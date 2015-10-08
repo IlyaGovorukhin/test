@@ -7,27 +7,22 @@ var gulp = require('gulp'), // Сообственно Gulp JS
     concat = require('gulp-concat'); // Склейка файлов
 
 
-// Собираем less
+//  less
 gulp.task('less', function() {
     gulp.src('app/css/*.less')
 
 });
 
-// Собираем html из Jade
+// С Jade
 
     gulp.task('jade', function() {
         gulp.src('app/*.jade')
-            .pipe(jade({
-                pretty: true
-            }))  // Собираем Jade только в папке app
-            .on('error', console.log) // Если есть ошибки, выводим и продолжаем
-
 
     });
 
 
 
-// Собираем JS
+// JS
     gulp.task('js', function() {
         gulp.src('app/js/*.js')
 
@@ -36,7 +31,7 @@ gulp.task('less', function() {
 
 
 
-// Копируем и минимизируем изображения
+//  изображения
 
     gulp.task('images', function() {
         gulp.src('app/img/*')
@@ -67,12 +62,13 @@ gulp.task('less', function() {
 
         // jade
         gulp.src('app/*.jade')
-            .pipe(jade())
+            .pipe(jade({
+            pretty: true
+        }))  // Собираем Jade только в папке app
             .pipe(gulp.dest('dist/'))
 
         // js
         gulp.src('app/js/*.js')
-            .pipe(concat('index.js'))
             .pipe(gulp.dest('dist/js'));
 
 
